@@ -1,0 +1,39 @@
+{% if user.is_authenticated %}
+
+<section class="mt-3 container" id="task-list">
+    <div class="row">
+      <div class="col-md-7 mx-auto">
+         <div class="card p-2">
+          <div class="card-title">
+            <h3>{{user.first_name}} Tasks</h3>
+          </div>
+         <div class="card-body">
+           <!-- first -->
+           {% for task in tasks %}
+          <div class="input-group mb-2" >
+            <div class="input-group-text">
+              {% if task.task_status %}
+              <input class="form-check-input" checked type="checkbox"  hx-post = "{% url 'mark-complete' task.id %}" hx-trigger = "click" hx-target = "#task-list" hx-swap = "innerHTMl">
+              {% else %}
+              <input class="form-check-input" type="checkbox" hx-post = "{% url 'mark-complete' task.id %}" hx-trigger = "click" hx-target = "#task-list" hx-swap = "innerHTMl">
+              {% endif %}
+            </div>
+            <input
+              type="text"
+              class="form-control"
+              disabled
+              id="specificSizeInputGroupUsername"
+              placeholder="{{task.task}}"
+            />
+            <div class="input-group-text bg-info"><span class="badge bg-warning text-dark">{{task.created_at | date}}</span></i></i></div>
+            
+
+            <div class="input-group-text bg-warning" hx-delete = "{% url 'delete-todo' task.id %}"  hx-trigger = "click" hx-target = "#task-list" hx-swap = "innerHTMl" hx-confirm = "Are You sure You wan't to delete:"><i class="bi bi-trash"></i></div>
+          </div>
+          {% endfor %}
+         </div>
+         </div>
+      </div>
+    </div>
+  </section>
+  {% endif %}

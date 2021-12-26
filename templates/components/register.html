@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="mt-3 container">
+    <div class="row">
+      <div class="col-md-7 mx-auto">
+        <div class="card p-2">
+          <div class="card-title">
+            <h3>Create an Account.</h3>
+          </div>
+          <div class="card-body">
+            <!-- first -->
+            <form action="{% url 'register' %}" method ="POST">
+              {% csrf_token %}
+              <div class="row">
+                <div class="col">
+                  <input
+                    type="text"
+                    name = "first_name"
+                    class="form-control"
+                    placeholder="First name"
+                    aria-label="First name"
+                  />
+                </div>
+                <div class="col">
+                  <input
+                    type="text"
+                    name="last_name"
+                    class="form-control"
+                    placeholder="Last name"
+                    aria-label="Last name"
+                  />
+                </div>
+              </div>
+
+              <div class="col mt-2">
+                <input
+                  type="text"
+                  name = "username"
+                  class="form-control"
+                  placeholder="username"
+                  hx-post = "{% url 'check-user' %}"
+                  hx-trigger="keyup"
+                  hx-target = "#username-check"
+                  
+                />
+                <span id = "username-check" class="warning-text font-weight-bold lead small text-danger px-2"
+                  ></span
+                >
+              </div>
+              <div class="col mt-2">
+                <input
+                  type="email"
+                  name = "email"
+                  class="form-control"
+                  placeholder="your_email@example.com"
+                  hx-post = "{% url 'email-check' %}"
+                  hx-trigger="keyup"
+                  hx-target = "#email-check"
+                />
+                <span id = "email-check" class="warning-text lead small text-danger px-2">
+                  
+                </span>
+              </div>
+
+              <div class="row mt-2">
+                <div class="col">
+                  <input
+                    type="password"
+                    name = "password"
+                    class="form-control"
+                    placeholder="Strong Password"
+                  />
+                </div>
+                <div class="col">
+                  <input
+                    type="password"
+                    name = "confirm_password"
+                    class="form-control"
+                    placeholder="Confirm Password"
+                  />
+                </div>
+              </div>
+              <div class="col-sm d-grid gap-2 mt-3">
+                <button type="submit" class="btn btn-outline-dark">
+                  Register Now
+                </button>
+              </div>
+              <span class="warning-text lead small text-danger px-2"
+                >Already have an account
+                <a href="{% url 'login' %}">Login Here</a></span
+              >
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+{% endblock content %}

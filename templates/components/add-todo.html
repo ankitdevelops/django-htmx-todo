@@ -1,0 +1,24 @@
+<section class="mt-5 container">
+  <div class="row">
+    <div class="col-md-7 mx-auto">
+      <form hx-post = "{% url 'add-todo' %}" hx-target = "#task-list" hx-swap = "innerHTMl">
+        {% csrf_token %}
+      <div class="row g-3">
+        
+          <div class="col-sm-8 col-md-8">
+            <input
+              type="text"
+              name = "task"
+              class="form-control"
+              placeholder="Write Your Daily Task Here."
+            />
+          </div>
+          <div class="col-sm d-grid gap-2">
+            <button type="submit" class="btn btn-outline-dark">Add Task</button>
+          </div>
+        
+      </div>
+    </form>
+    </div>
+  </div>
+</section>

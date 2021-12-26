@@ -1,0 +1,22 @@
+<section>
+  <header class="header">
+    <section class="py-5 container">
+      <div class="row py-lg-5">
+        <div class="col-lg-6 col-md-8 float-start">
+          <h1 class="display-3">Todo App</h1>
+          <p class="lead text-white">
+            Hello,<strong>{{user.first_name}}</strong> Here is your task's for the day.
+          </p>
+          <p class="lead text-white">
+            {% if user.is_authenticated %}
+            <span><a href="{% url 'logout_user' %}">Logout</a></span>
+            {% else %}
+            <span><a href="{% url 'register' %}">Register</a></span>
+            <span class="mx-2"><a href="{% url 'login' %}">Login</a></span>
+            {% endif %}
+          </p>
+        </div>
+      </div>
+    </section>
+  </header>
+</section>
